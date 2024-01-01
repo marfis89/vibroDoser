@@ -62,9 +62,9 @@ optional for dust collection:
 
 #### Steps to set up Raspberry Pi
 
-1. Copy [hx7111](hx711\hx711.py) and [vibrodoser.py](hx711\vibroDoser.py) to the pi /home/pi/vibrodoser/
+1. Copy [hx7111](hx711/hx711.py) and [vibrodoser.py](./hx711/vibroDoser.py) to the pi /home/pi/vibrodoser/
 2. Make vibrodoser.py executable ```chmod +x /home/pi/vibroDoser/vibroDoser.py```  
-3. Add the content of the [Service](service\vibrodoser.service) file to /etc/systemd/system/vibrodoser.service
+3. Add the content of the [Service](./service/vibrodoser.service) file to /etc/systemd/system/vibrodoser.service
 4. Enable the service  with ```sudo systemctl enable vibroDoser.service```
 
 #### Installation of Node-RED and necessary packages
@@ -85,7 +85,7 @@ Now install the following pallets for nodered dashboard and mqtt broker
 -[node-red-contrib-aedes](https://flows.nodered.org/node/node-red-contrib-aedes)  
 -[node-red-dashboard](https://flows.nodered.org/node/node-red-dashboard)  
 
-Now import the [flow](flow\flow.json) to nodered.
+Now import the [flow](./flow/flow.json) to nodered.
 
 ### Node-RED Flow
 
