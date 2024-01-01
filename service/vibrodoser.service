@@ -1,0 +1,18 @@
+[Unit]
+Description=vibrodoser Service
+After=syslog.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/vibrodoser
+ExecStart=/usr/bin/python3 /home/pi/vibrodoser/vibrodoser.py
+SyslogIdentifier=vibrodoser
+StandardOutput=syslog
+StandardError=syslog
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target
