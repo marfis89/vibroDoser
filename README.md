@@ -1,6 +1,6 @@
 # Vibrodoser - Open Source Bulk Filling Machine  
 
-![Vibrodoser Machine](docs\img\vibrodoserAssembly1.jpg)
+![Vibrodoser Machine](./docs/img/vibrodoserAssembly1.jpg)
 
 ## Introduction  
 
@@ -28,7 +28,7 @@ To build your own Vibrodoser you will need the following parts. Feel free to use
 ### List of electrical parts (price ~700€)
 
 - Raspberry pi 3, 4, 5 (price ~50€)
-- Raspberry Pi 8-ch Relay Expansion Board  [waveshare](https://www.waveshare.com/rpi-relay-board-b.htm) (price ~25€)
+- Raspberry Pi 8-ch Relay Expansion Board [waveshare](https://www.waveshare.com/rpi-relay-board-b.htm) (price ~25€)
 - 1kg load cell with hx711 A/D [hx711](https://www.ebay.de/sch/i.html?_from=R40&_trksid=p2553889.m570.l1313&_nkw=hx+711+loadcell&_sacat=0) (price ~5€)
 - 10A Power regulator [kemo](https://www.kemo-electronic.de/en/Transformer-Dimmer/M240-Power-Control-230-V-AC-10-A-Multifunction.php) (price ~50€)
 - Linear feeder [Afag](https://www.afag.com/en/products/detail/linear-feeder-hlf-m-3.html) (get a used one from ebay ~350€)
