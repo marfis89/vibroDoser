@@ -2,7 +2,7 @@
 
 ![Vibrodoser-Maschine](./docs/img/vibrodoserAssembly1.jpg)
 
-## Einleitung
+## Einleitung 
 
 Vibrodoser ist ein Open-Source-Projekt, das darauf abzielt, eine Maschine zum befüllen von Beuteln oder Behältern mit verschiedenen Schüttgütern wie Mehl, Pulver und ähnlichen Substanzen zu erstellen. Diese Dokumentation bietet eine umfassende Anleitung zu Hardware, Software und Montageanweisungen zum Bau deines eigenen des Vibrodosers an.
 
