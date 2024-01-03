@@ -4,6 +4,8 @@
 
 ## Introduction  
 
+[Deutsche Anleitung](./GERMANREADME.md)
+
 Vibrodoser is an open-source project aimed at creating a machine for accurately filling bags with various bulk materials such as flour, powder, and other similar substances. This documentation provides a comprehensive guide on the hardware, software, and assembly instructions for replicating the Vibrodoser.
 
 ## Features
@@ -27,7 +29,7 @@ Vibrodoser is an open-source project aimed at creating a machine for accurately 
 
 To build your own Vibrodoser you will need the following parts. Feel free to use other brands with similar specifications:
 
-### List of electrical parts (price ~700€)
+### List of electrical parts
 
 - Raspberry pi 3, 4, 5 (price ~50€)
 - [Raspberry Pi 8-ch Relay Expansion Board from waveshare](https://www.waveshare.com/rpi-relay-board-b.htm) (price ~25€)
@@ -44,7 +46,7 @@ optional for visualisation (you can use your smartphone or laptop too)
 - a cheap 10" tablet
 - a tablet holder that fits your tablet, so you can mount the tablet to the vibrodoser
 
-### List of 3D models and mechanical parts (price ~500€)  
+### List of 3D models and mechanical parts
 
 - 10m 40mmx40mm steel pipes (price ~200€)
 - 5mm steel plate (price ~200€)
@@ -69,7 +71,6 @@ optional for wlan / lan connection of the raspberry (You don't have to create a 
 
 - a cheap wlan router (mostly they have 12v input voltage, choose a power supply that fits the router)  
 - [12v ~5a DIN rail power supply HDR-60-12](https://www.meanwell-web.com/en-gb/ac-dc-ultra-slim-din-rail-power-supply-input-range-hdr--60--12) (price ~20€)  
-
 
 ## Hardware-Setup
 
@@ -115,7 +116,7 @@ Assemble the gutter with the linear feeder and mount the linear feeder to the fr
 
 ![Scale](./docs/img/scaleAssembly1.jpg)
 
-To assamble the scale you will need to print three parts:
+To assemble the scale you will need to print three parts:
 
 - [ScaleBase](./cad/3dPrint/Scale/ScaleBase.3mf)
 - [hx711Cover](./cad/3dPrint/Scale/hx711Cover.3mf)
@@ -127,11 +128,19 @@ optional you can print the scale plate too, but its recommended to use a stainle
 
 First screw the load cell onto the base (2x M5x25). Screw the hx711 board onto the hx711 cover (2x M3x8 and nuts). Shorten the cables of the load cell and solder them with the hx711 board  
 
-- Normally: red wire to +E, black wire to -E, green wire to +S, white wire to -S
+Normally:  
+
+- red wire to +E
+- black wire to -E
+- green wire to +S
+- white wire to -S
 
 Make sure this connection fits the manufacturer's specifications of your load cell. Solder a cable with 4 strands to the hx711 board and make sure the cable is long enough to reach the raspberry pi.  
 
-- Vcc to 5v from the pi, Gnd to Gnd from the pi, DT to Pin 22 (Gpio 25) and SCK to Pin 23 (Gpio 11).  
+- Vcc to 5v from the pi or power supply
+- Gnd to Gnd from the pi or power supply
+- DT to Pin 22 (BMC GPIO 25)  
+- SCK to Pin 23 (BMC GPIO 11)  
 
 Screw the hx711 cover to the base (4x M3x20). Finally screw the scale plate to the load cell with the scale distance between (2x M4x19). If no data arrives in nodered, check the cabling.
 
@@ -139,15 +148,19 @@ The scale fits to the scale frame plate. Screw the dumpers between the plate and
 
 ## Electrical-Setup
 
-WARNING electrical installation are dangerous. If you not know what to do, ask a professional to do the job for you !
+WARNING electrical installation are dangerous. If you don't know how to handel this task, ask a professional to do the job for you ! Liability for damages is excluded !
 
-Make three inputs for phase, neutral and earth. Place the 13a input fuse (1p+N) onto the DIN rail and hook phase, neutral to it. Then make a connection from the fuse to the power supplies. Also wire  the phase to relay 1 and relay 2 of the raspberry relay board. We will use the relays to switch the power of the power regulator and the optional vacuum cleaner. Use the NC connection of the relays, so the power is normally cut off. Wire the switched phase und neutral to the power regulator. Wire the linear feeder to the power regulator. For the optional vacuum cleaner you can install a power outlet, so you can plug you vacuum cleaner into the outlet. Wire the power outlet to the second switched phase and neutral and earth. Power the pi/ the board with 5v from the power supply. If you choose a separate router setup, connect router and the power supply. Hook up the pi to the router or your local network. You can choose a wlan connection to, but network cables are always the better choice.
+Make three inputs for phase, neutral and earth. Place the 13a input fuse (1p+N) onto the DIN rail and hook phase, neutral to it. Then make a connection from the fuse to the power supplies. Also wire  the phase to relay 1 and relay 2 of the raspberry relay board. We will use the relays to switch the power of the power regulator and the optional vacuum cleaner. Use the NC connection of the relays, so the power is normally cut off. Wire the switched phase und neutral to the power regulator. Wire the linear feeder to the power regulator. Connect the pwm pin 12 (BCM GPIO 18) to the pwn pin of the power regulator. Make sure the pi and the power regulator using the same GND.  
+
+For the optional vacuum cleaner you can install a power outlet, so you can plug you vacuum cleaner into the outlet. Wire the power outlet to the second switched phase and neutral and earth.  
+
+Power the pi or the board with 5v and GND from the power supply. If you choose a separate router setup, connect router and the power supply. Hook up the pi to the router or your local network. You can choose a wlan connection to, but network cables are always the better choice. Connect the four cables of the scale to the pi as described in the previous paragraph.
 
 It also important to hook earth to the frame, first for safety reasons, second to prevent dust explosions.
 
 ### Wiring diagrams and schematics of the control cabinet
 
-
+follow soon
 
 ## Software Setup
 
@@ -189,7 +202,7 @@ Now import the [flow](./flow/flow.json) to nodered. See this instructions [Impor
 
 #### Node-RED Flow
 
-1. Description of Node-RED flow for controlling the machine
+The flow provides a mqqt broker to communication with the scale service. The flow listening on ```vibroDoser/scale/load``` and sending the tare command on ```vibroDoser/scale/tare``` to the scale. While there is active, all measurements from the scale are blocked.
 
 ## Usage Guide
 
